@@ -39,7 +39,10 @@ COPY alembic.ini ./
 COPY alembic/ alembic/
 COPY docker/config.toml /app/config.toml
 
+RUN mkdir -p /build && ln -s /app/.venv /build/.venv
+
 ENV PATH="/app/.venv/bin:$PATH"
+ENV PYTHONPATH="/app/src:$PYTHONPATH"
 ENV DUH_CONFIG="/app/config.toml"
 
 VOLUME ["/data"]
